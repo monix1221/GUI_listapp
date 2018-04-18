@@ -10,7 +10,7 @@ public class ItemBaseView extends JFrame {
 
     private final ItemBaseController baseController;
     private JPanel mainApplicationPanel;
-    private JLabel mainHelloText = new JLabel(WELCOME_TEXT_MAIN_WINDOW);
+    private JLabel mainHelloLabel = new JLabel(WELCOME_TEXT_MAIN_WINDOW);
     private JButton mainButton = new JButton(OPEN_WINDOW_LABEL);
 
     public ItemBaseView(ItemBaseController baseController) {
@@ -23,14 +23,13 @@ public class ItemBaseView extends JFrame {
         this.getContentPane().add(mainApplicationPanel);
         setLocationRelativeTo(null); //zeby nie otwieralo okna w lewym gornym rogu tylko posrodku
 
-        mainApplicationPanel.add(mainHelloText);
-        mainHelloText.setHorizontalTextPosition(SwingConstants.CENTER);
+        mainApplicationPanel.add(mainHelloLabel);
+        mainHelloLabel.setHorizontalTextPosition(SwingConstants.CENTER);
         mainApplicationPanel.add(mainButton);
         mainButton.setAlignmentY(Component.BOTTOM_ALIGNMENT);
         mainButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        mainHelloText.setAlignmentX(Component.CENTER_ALIGNMENT);
-        mainHelloText.setAlignmentY(Component.CENTER_ALIGNMENT);
-        //mainButton.setHorizontalAlignment(SwingConstants.CENTER);
+        mainHelloLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        mainHelloLabel.setAlignmentY(Component.CENTER_ALIGNMENT);
 
         setVisible(true);
 

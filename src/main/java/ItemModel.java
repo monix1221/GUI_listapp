@@ -19,14 +19,14 @@ public class ItemModel {
         return instance;
     }
 
-    public List<Item> getAllItems() {
+    public List<Item> getItems() {
         return items;
     }
 
-    public StringBuilder getReadyItems() {
+    public StringBuilder getAllTextItems() {
         StringBuilder builder = new StringBuilder();
         for (Item item: items) {
-            builder.append(item + "\n");
+            builder.append(item.getText() + "\n");
         }
         return builder;
     }

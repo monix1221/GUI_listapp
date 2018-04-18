@@ -1,11 +1,12 @@
 public class ItemChildController {
-
     private ItemModel model;
     private ItemChildView childView;
+    private ItemBaseController baseController;
 
-    public ItemChildController(ItemModel model) {
+    public ItemChildController(ItemModel model, ItemBaseController baseController) {
         this.model = model;
         this.childView = new ItemChildView(this);
+        this.baseController = baseController;
     }
 
     public void startWindow() {
@@ -21,12 +22,16 @@ public class ItemChildController {
         }
     }
 
-    public void fillData() {
-        childView.showItems(model.getAllItems());
+    public void fillInitialData() {
+        childView.showItems(model.getItems());
     }
 
-    public void updateAllChildWindows() {
-        childView.updateItemsOnWindows(model.getReadyItems());
+    public void updateOtherOpenWindows() {
+        baseController.updateChildWindowsOnNewItemAdded();
+    }
+
+    public void updateWindow() {
+        childView.updateTextItemsOnWindow(model.getAllTextItems());
     }
 
 }

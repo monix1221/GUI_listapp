@@ -1,12 +1,8 @@
 public class Item {
     private String text;
 
-    public Item (String item) {
+    public Item(String item) {
         this.text = item;
-    }
-
-    public void setText(String text) {
-        this.text = text;
     }
 
     public String getText() {

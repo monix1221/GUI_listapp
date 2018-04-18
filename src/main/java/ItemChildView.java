@@ -2,8 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.List;
 
 public class ItemChildView extends JFrame {
@@ -13,40 +11,11 @@ public class ItemChildView extends JFrame {
     private static final String WARNING_MESSAGE = "You can't add empty item!";
 
     private final ItemChildController controller;
-    private JTextArea itemArea;
+    private JTextArea textArea;
 
     public ItemChildView(ItemChildController controller) {
         this.controller = controller;
-        this.itemArea = new JTextArea();
-
-        this.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                System.out.println("Mouse has been clicked");
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                System.out.println("Mouse has been pressed");
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                System.out.println("Mouse has been mouseReleased");
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                System.out.println("Mouse has been mouseEntered");
-                controller.updateAllChildWindows();
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-        });
+        this.textArea = new JTextArea();
     }
 
     public void createWindow() {
@@ -56,10 +25,10 @@ public class ItemChildView extends JFrame {
         setVisible(true);
         setPreferredSize(new Dimension(400, 300));
 
-        itemArea.setEditable(false); //prevents user from writing
-        itemArea.getAccessibleContext();
+        textArea.setEditable(false); //prevents user from writing
+        textArea.getAccessibleContext();
 
-        JScrollPane scrollPane = new JScrollPane(itemArea);
+        JScrollPane scrollPane = new JScrollPane(textArea);
         this.getContentPane().add(scrollPane);
 
         pack(); //bez tego okno pokazuje sie malutkie
@@ -75,15 +44,11 @@ public class ItemChildView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 controller.addNewItem(itemTextField.getText());
                 itemTextField.setText("");
-                controller.updateAllChildWindows();
+                controller.updateOtherOpenWindows();
             }
         });
 
         this.getContentPane().add(BorderLayout.SOUTH, panel);
-    }
-
-    public void appendNewItem(String text) {
-        itemArea.append(text + "\n");
     }
 
     public void createWarningPopUp() {
@@ -92,12 +57,12 @@ public class ItemChildView extends JFrame {
     }
 
     public void showItems(List<Item> allItems) {
-        for(Item item: allItems) {
-            itemArea.append(item.getText() + "\n");
+        for (Item item : allItems) {
+            textArea.append(item.getText() + "\n");
         }
     }
 
-    public void updateItemsOnWindows(StringBuilder allItems) {
-        itemArea.setText(allItems.toString());
+    public void updateTextItemsOnWindow(StringBuilder allItems) {
+        textArea.setText(allItems.toString());
     }
 }
